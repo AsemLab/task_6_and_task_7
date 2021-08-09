@@ -2,9 +2,10 @@ package jo.secondstep.tables;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,24 +13,25 @@ import javax.persistence.Table;
 public class Country {
 
 	@Id
-	@Column(name = "country_id",nullable = false)
+	@Column(name = "country_id", nullable = false)
 	private String id;
-	
+
 	@Column(name = "country_name")
 	private String name;
-	
-	@Column(name = "region_id",nullable = false)
-	private Integer regionId;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "region_id")
+	private Region region;
 
 	public Country() {
 	}
 
-	public Country(String id,String name, Integer regionId) {
+	public Country(String id, String name, Region region) {
 		this.id = id;
 		this.name = name;
-		this.regionId = regionId;
+		this.region = region;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -38,16 +40,21 @@ public class Country {
 		return name;
 	}
 
-
-	public Integer getRegionId() {
-		return regionId;
+	public Region getRegion() {
+		return region;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
 	@Override
 	public String toString() {
-		return "Country [id=" + id + ", name=" + name + ", regionId=" + regionId + "]";
+		return "Country [id=" + id + ", name=" + name + ", region=" + region.getId() + "]";
 	}
-	
-	
-	
-	
+
 }

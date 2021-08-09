@@ -2,9 +2,12 @@ package jo.secondstep.tables;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,8 +32,9 @@ public class Location {
 	@Column(name = "state_province")
 	private String stateProvince ;
 	
-	@Column(name = "country_id",nullable = false)
-	private String countryId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "country_id")
+	private Country country;
 
 	
 	
@@ -39,12 +43,12 @@ public class Location {
 	}
 
 	public Location(String streetAddress, String postalCode, String city, String stateProvince,
-			String countryId) {
+			Country country) {
 		this.streetAddress = streetAddress;
 		this.postalCode = postalCode;
 		this.city = city;
 		this.stateProvince = stateProvince;
-		this.countryId = countryId;
+		this.country = country;
 	}
 
 	public Integer getId() {
@@ -69,14 +73,36 @@ public class Location {
 	}
 
 	
-	public String getCountryId() {
-		return countryId;
+	public Country getCountry() {
+		return country;
+	}
+
+	
+	
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	@Override
 	public String toString() {
 		return "Location [id=" + id + ", streetAddress=" + streetAddress + ", postalCode=" + postalCode + ", city="
-				+ city + ", stateProvince=" + stateProvince + ", countryId=" + countryId + "]";
+				+ city + ", stateProvince=" + stateProvince + ", country=" + country.getId() + "]";
 	}
 	
 	

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import jo.secondstep.repositories.EmployeesRepository;
-import jo.secondstep.tables.Dependent;
 import jo.secondstep.tables.Employee;
 
 @Controller

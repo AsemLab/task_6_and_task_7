@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import jo.secondstep.repositories.DependentsRepository;
-import jo.secondstep.tables.Country;
 import jo.secondstep.tables.Dependent;
 
 @Controller

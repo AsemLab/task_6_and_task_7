@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jo.secondstep.repositories.CountriesRepository;
 import jo.secondstep.tables.Country;
-import jo.secondstep.tables.Department;
+import jo.secondstep.tables.Region;
 
 
 @Controller
@@ -18,7 +18,7 @@ public class CountriesController {
 	@PostMapping(path = "/add")
 	public @ResponseBody String addNewCountry(  @RequestParam String country_id,String name, @RequestParam int region_id ) {
 		
-		Country country = new Country(country_id,name,region_id);
+		Country country = new Country(country_id,name,new Region());
 		countriesRepository.save(country);
 		return "Country: "+country.getName()+" has been Saved to database.";
 		

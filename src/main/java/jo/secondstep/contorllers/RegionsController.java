@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import jo.secondstep.repositories.RegionsRepository;
-import jo.secondstep.tables.Job;
 import jo.secondstep.tables.Region;
 
 @Controller
